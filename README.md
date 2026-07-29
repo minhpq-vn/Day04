@@ -1,18 +1,25 @@
 # Day 04 Lab v2 — Research Agent Tool Eval
 
-## BẢNG PHÂN VAI 
+## 👥 BẢNG PHÂN VAI & FILE ĐẢM NHẬN
 
-| Vai trò (Role)                               | File đảm nhận           | Nhiệm vụ chính                                                                                          | Người đảm nhận  | Mã sinh viên |
-| :-------------------------------------------- | :------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------- | :----------- |
-| **Role 1: Product Architect**           | `config/test_cases.json` | Định hướng bài toán & soạn bộ câu test case                                                       | Đặng Minh Quang | 2A202601108 |
-| **Role 2: Tool Engineer**               | `src/tools.py`           | Định nghĩa các công cụ (Tools) cho Agent                                                             | Nhữ Văn Hùng | 2A202601372 |
-| **Role 3: Prompt Engineer**             | `src/prompts.py`         | Viết ReAct System Prompt & phanh Guardrails                                                               | Phạm Quốc Minh | 2A202601494 |
-| **Role 4: Core Developer / Integrator** | `src/app.py`             | **Đầu mối kéo code/file của nhóm (`git pull`), Vibe Code lắp ráp thành App hoàn chỉnh** | Nguyễn Văn Hưng | 2A202601284 |
-| **Role 5B: Flowchart Architect**               | `docs/trace_eval.md`     | Lập bảng Scoring Matrix & Soi nhật ký Trace Log                                                        | Bùi Thu Trang | 2A202601758 |
+**Chủ đề:** Social Listening Monitor — research/monitoring agent theo dõi tài khoản và các chủ đề được bàn luận trên X/Twitter. Agent chỉ kết luận từ dữ liệu tool trả về, không tự khẳng định tín hiệu không có bằng chứng.
+
+| Vai trò | File đảm nhận | Nhiệm vụ chính | Người đảm nhận | Mã sinh viên |
+|---|---|---|---|---|
+| **Role 1: Product Architect** | `data/eval_group.json` | Xác định MVP, viết đúng 10 team eval (5 single-turn, 5 multi-turn), bảo vệ fixed base eval. | Đặng Minh Quang | 2A202601108 |
+| **Role 2: Tool Engineer** | `tools/social_search/tool.py` và tool mới | Kiểm tra RapidAPI Twitter API45, bổ sung tool/`TOOL.md`, bảo đảm tool trả lỗi thay vì crash. | Nhữ Văn Hùng | 2A202601372 |
+| **Role 3: Prompt Engineer** | `artifacts/system_prompt.md` | Viết guardrails, routing và quy tắc tổng hợp; chỉ đổi prompt theo hypothesis đã ghi. | Phạm Quốc Minh | 2A202601494 |
+| **Role 4: Core Developer / Integrator** | UI, `chat.py`, `tools/__init__.py`, `artifacts/tools.yaml` | Tích hợp tool, dựng UI/trace, đồng bộ declaration và chạy eval. | Nguyễn Văn Hưng | 2A202601284 |
+| **Role 5A: Trace Analyst** | `analysis/base_runs.csv`, `artifacts/version_log.csv` | Phân tích run JSON, failure, metric/hash và ghi evidence v0–v3. | Đỗ Việt Tùng | 2A202601876 |
+| **Role 5B: Flowchart & Report Architect** | `artifacts/REPORT.md` | Vẽ luồng monitoring, chuẩn bị report/demo có dẫn chứng run thật. | Bùi Thu Trang | 2A202601758 |
+
+Mỗi người ưu tiên file mình phụ trách. Nếu rename tool, chỉ đồng bộ field tên tool trong fixed eval; không sửa query, expected arguments hoặc expected behavior của `data/eval_base.json`.
 
 ## Brief
 
-Trong lab này, nhóm build một research agent nhỏ nhưng chạy thật. Agent nhận request của user, chọn tool, truyền arguments, chạy tool thật, lưu full JSON log, rồi dùng log đó để tối ưu prompt/tool declaration qua nhiều version.
+Trong lab này, nhóm build **Social Listening Monitor**: research/monitoring agent tìm bài X/Twitter theo keyword, thương hiệu, sản phẩm, hashtag, sự kiện hoặc đối thủ, rồi tổng hợp tín hiệu thành brief cho Marketing, PR, Product hoặc Customer Support.
+
+MVP: search bài theo keyword, chọn `Latest`/`Top`, tóm tắt sentiment và chủ đề chính, xuất brief có link nguồn. `social_search` dùng RapidAPI Twitter API45; chỉ gọi `timeline`, `lookup`, `fetch`, `format`, `clarify`, `policy` hoặc `send` khi thật sự phù hợp.
 
 Điều cần học không phải là "chatbot trả lời hay". Điều cần học là vòng lặp evidence-driven:
 
@@ -109,16 +116,16 @@ Trong fixed eval, chỉ đổi field tên tool để đồng bộ rename; không
 
 ## Tool tracks
 
-Phần dưới đây chỉ tóm tắt mỗi tool *làm gì*. Việc xác định *khi nào dùng* tool nào là phần nhóm tự định nghĩa trong prompt và tool declaration. Giữ một declaration optional trong `tools.yaml` vẫn có thể ảnh hưởng routing, dù nó không đổi yêu cầu must-have.
+Contract tool cho Social Listening Monitor phải nêu cả lúc dùng và không dùng tool.
 
 Core tools:
 
-- `clarify`: hỏi lại người dùng khi thiếu thông tin hoặc cần xác nhận yes/no trước hành động nhạy cảm.
-- `timeline`: lấy bài đăng gần đây của một tài khoản.
-- `social_search`: tìm bài đăng theo từ khóa.
-- `lookup`: tìm trên web.
-- `fetch`: đọc nội dung một URL.
-- `format`: trình bày các item đã có thành markdown digest.
+- `social_search`: tìm bài theo keyword/brand/hashtag; `Latest` cho monitoring mới nhất, `Top` cho bài nổi bật/tương tác cao.
+- `timeline`: lấy bài gần đây của **một tài khoản cụ thể**, không thay thế search chủ đề.
+- `clarify`: hỏi lại khi thiếu brand/keyword, account, timeframe, nền tảng hoặc xác nhận yes/no.
+- `lookup`: chỉ tìm web/news khi cần ngữ cảnh ngoài social posts.
+- `fetch`: đọc URL cụ thể đã được nêu hoặc cần kiểm chứng.
+- `format`: định dạng dữ liệu đã có thành digest, không bịa bài đăng hay metrics.
 
 Optional/advanced tools có sẵn:
 
@@ -178,6 +185,8 @@ python run_eval.py --provider openrouter --version v0 --suite base --eval-cases 
 
 Run JSON cũng lưu `artifact_version`, `prompt_hash`, `tools_hash`, actual tool calls, và actual tool results. Đó là evidence chính cho report.
 
+**Phân vai v0:** Role 4 chạy và lưu run; Role 5A đọc failure/mismatch/tool call, Role 1 xác nhận base eval không bị sửa, Role 2 kiểm tra lỗi tool. Role 3 và 5B chỉ ghi evidence/candidate hypothesis, chưa tối ưu artifact.
+
 Optional: parse run JSON into a flat CSV table for analysis:
 
 ```bash
@@ -198,13 +207,25 @@ Không sửa cases trong `data/eval_base.json`, ngoại trừ field tên tool kh
 Method, not memorized answers:
 
 1. Mở run JSON. Với mỗi case fail, đọc `observed_mismatch`, `failures`, `actual_tool_calls`, `tool_results`.
-2. Đặt một giả thuyết: vì sao agent chọn sai.
-3. Sửa đúng một thứ để kiểm chứng giả thuyết đó.
-4. Chạy lại, so metric trước/sau, rồi ghi version log.
+2. Phân loại failure: sai tool, sai argument, thiếu hỏi lại, sai confirmation boundary hoặc gọi tool thừa.
+3. Đặt một hypothesis có thể kiểm chứng, truy được tới case ID/evidence của run trước.
+4. Chỉ sửa `artifacts/system_prompt.md` **hoặc** `artifacts/tools.yaml` theo hypothesis đó.
+5. Chạy một version, so metric trước/sau, rồi ghi version log.
 
 ## Step 3 — Run 3 optimization versions
 
-Không chạy cả ba lệnh liên tiếp. Trước mỗi version, sửa một hypothesis rồi mới chạy đúng một lệnh:
+Không chạy cả ba lệnh liên tiếp. Các hypothesis sau chỉ là candidate; chỉ áp dụng khi failure của version ngay trước đó xác nhận. Nếu không khớp, ghi hypothesis thực tế vào `version_log.csv`.
+
+| Version | Hypothesis cần kiểm chứng | Một thay đổi trước run | Evidence cần so | Chủ trách nhiệm |
+|---|---|---|---|---|
+| **v0** | Baseline chưa có kết luận, cần đo routing/arguments thực tế. | Không tối ưu trước run. | 4 metric, `provider_error_cases=0`, `measured_cases=total_cases`, hashes và từng failure. | Role 4, 5A |
+| **v1** | Nếu nhầm `timeline`/`lookup` với `social_search` hoặc nhầm `Latest`/`Top`, routing rule/convention `search_type` chưa rõ. | Sửa prompt **hoặc** declaration để phân biệt search chủ đề, account, Latest và Top. | `tool_routing_accuracy`, `argument_accuracy`, actual calls. | Role 3/4, 5A |
+| **v2** | Nếu agent tự đoán brand/keyword/account/timeframe còn thiếu, điều kiện `clarify` chưa rõ. | Sửa prompt **hoặc** declaration, buộc hỏi thông tin thiếu. | `multiturn_accuracy`, `missing_info`, tool thừa. | Role 3, 1, 5A |
+| **v3** | Nếu agent gọi `lookup`/`fetch` thừa, trộn suy luận với dữ liệu, hoặc tự `send`, boundary/priority tool chưa rõ. | Sửa prompt **hoặc** declaration, ưu tiên social data và confirm trước `send`. | `case_accuracy`, `wrong_boundary`, `unnecessary_tool`, trace. | Role 3/4, 5B |
+
+v1–v3 phải là thí nghiệm thật: có failure nguồn, hypothesis, artifact/hash và metric trước–sau. Artifact không đổi không được tính là một vòng tối ưu.
+
+Sau khi đã sửa đúng một hypothesis, mới chạy lệnh của version tương ứng:
 
 ```bash
 python run_eval.py --provider openrouter --version v1 --suite base --eval-cases data/eval_base.json
@@ -238,6 +259,8 @@ Mỗi case cần:
 File `data/eval_group.json` để trống có chủ đích vì phần team eval phải do chính nhóm tự thiết kế.
 Cả template trong `starter_v0/` và `solution/` đều trống; điều đó không thay đổi yêu cầu đúng 10 case. Xem [2 case mẫu về schema](starter_v0/samples/eval_group.schema.example.json) (không tính vào 10 case và không nộp thay case của team). Với multi-turn, phần tử cuối của `turns` phải là user turn đang được chấm.
 
+Role 1 viết và Role 5A review 10 case để bao phủ: keyword/hashtag search; `Latest` vs `Top`; timeline theo handle; brief có nguồn; thiếu keyword cần `clarify`; phân biệt brand/account; cần thêm web context; URL cần `fetch`; từ chối `send`; và xác nhận `send`. Không đưa API result giả vào expected behavior.
+
 Run:
 
 ```bash
@@ -260,7 +283,7 @@ Nếu đã bỏ optional declarations để isolate core, bật lại chúng tr�
 python chat.py --provider openrouter --version v3
 ```
 
-Thử ít nhất 3 live turn: một request research bình thường; một request thiếu thông tin rồi bổ sung ở lượt sau; và một request có hành động nhạy cảm để kiểm tra boundary hỏi lại/xác nhận.
+Thử ít nhất 3 live turn: “Theo dõi thảo luận mới nhất về VinFast trên X”; một request thiếu keyword/timeframe rồi bổ sung ở lượt sau; và yêu cầu gửi brief để kiểm tra boundary hỏi lại/xác nhận. Brief phải nêu link nguồn có từ tool result và tách rõ dữ liệu quan sát với phân tích/suy luận.
 
 ## Chuẩn bị demo
 
