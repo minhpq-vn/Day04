@@ -1,11 +1,3 @@
-# starter_v0 — tool declarations (intentionally vague).
-# Names and descriptions here are a rough first draft. Routing rules, name->handle
-# mapping, arg conventions (news/timeframe/Top), and the send-confirmation boundary
-# are NOT spelled out anywhere yet. Your job is to make these declarations + the
-# system prompt good enough that the agent routes correctly on the eval.
-#
-# If you rename a tool, keep the name in sync across:
-#   this file  ->  tools/__init__.py (TOOL_FUNCTIONS)  ->  data/eval_base.json + data/eval_research_extension.json
 tools:
   # ---------------- Core tools ----------------
   - name: clarify
@@ -90,6 +82,18 @@ tools:
           description: "Số lượng bài đăng tiêu biểu cần trích dẫn trong phân tích. Mặc định là 3."
       required: [items]
 
+  - name: sentiment_analyzer
+    description: "Phân tích cảm xúc thảo luận (tích cực/tiêu cực/trung lập), tính điểm rủi ro truyền thông và đưa ra gợi ý hành động PR/Marketing từ các bài đăng thu thập được."
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Tên thương hiệu hoặc từ khóa cần phân tích."}
+        items:
+          type: array
+          default: []
+          description: "Danh sách bài đăng thu thập từ social_search hoặc timeline."
+      required: []
+
   - name: lookup
     description: "Dùng để tra cứu thông tin trên Internet hoặc tìm kiếm tin tức trên web khi cần thêm ngữ cảnh ngoài các bài đăng mạng xã hội. KHÔNG sử dụng khi chỉ cần theo dõi hoặc tìm kiếm bài viết trên Twitter/X. Sử dụng topic='news' cho tin tức thời sự hiện tại."
     parameters:
@@ -131,7 +135,8 @@ tools:
       properties:
         items:
           type: array
-          description: "Danh sách các mục tin tức hoặc bài đăng cần định dạng."
+          default: []
+          description: "Danh sách các item thu thập được."
           items:
             type: object
             properties:

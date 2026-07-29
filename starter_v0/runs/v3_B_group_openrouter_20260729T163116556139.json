@@ -1,0 +1,1034 @@
+{
+  "run_id": "v3_B_group_openrouter_20260729T163116556139",
+  "version": "v3",
+  "artifact_version": "v3+p3b1b86e2b782+t0716055b62e0",
+  "prompt_hash": "3b1b86e2b782fe8267f8a3cd840365de968b09ba8a72cb38c348eec2adef5dda",
+  "tools_hash": "0716055b62e04a14cc1fca4c93bfb6bf93454fd0939770bbb4bfe2e45aa6c2cd",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "E:\\hung\\VinAI\\Lab\\Lab4\\Day04\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "E:\\hung\\VinAI\\Lab\\Lab4\\Day04\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "Bộ 10 case đánh giá chuyên biệt cho đề tài Social Listening Monitor: 5 single-turn và 5 multi-turn.",
+  "generated_at": "2026-07-29T16:31:16",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 10,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "G01_social_search_brand",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "social_search_brand",
+        "difficulty": "easy",
+        "what_it_tests": "Tìm thảo luận mới nhất về thương hiệu VinFast trên X -> social_search query VinFast, search_type Latest."
+      },
+      "input": "Theo dõi thảo luận mới nhất về VinFast trên X",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "VinFast",
+              "search_type": "Latest"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "VinFast",
+              "search_type": "Latest",
+              "limit": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "VinFast",
+            "search_type": "Latest",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "VinFast",
+            "search_type": "Latest",
+            "items": [
+              {
+                "title": "@sicupuh Lumayan juga nelennya ya Pak, main di deket2 level Vinfast with subs.",
+                "summary": "@sicupuh Lumayan juga nelennya ya Pak, main di deket2 level Vinfast with subs.",
+                "url": "https://x.com/Nobunyaga/status/2082357387835670885",
+                "source": "@Nobunyaga",
+                "date": "Wed Jul 29 06:47:44 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "32"
+                }
+              },
+              {
+                "title": "VinFast Vietnam drives in for loan",
+                "summary": "VinFast Vietnam drives in for loan\n· via IFR LOANS",
+                "url": "https://x.com/wokeupviolent/status/2082347334831112526",
+                "source": "@wokeupviolent",
+                "date": "Wed Jul 29 06:07:47 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "8"
+                }
+              },
+              {
+                "title": "भारत में कार का असली खर्चा समझना हुआ आसान, VinFast VF 6 के साथ बचत का पूरा गणित. https://t.co/IsEQIeXZFF",
+                "summary": "भारत में कार का असली खर्चा समझना हुआ आसान, VinFast VF 6 के साथ बचत का पूरा गणित. https://t.co/IsEQIeXZFF",
+                "url": "https://x.com/gulfhindinews/status/2082338522879422582",
+                "source": "@gulfhindinews",
+                "date": "Wed Jul 29 05:32:46 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "94"
+                }
+              },
+              {
+                "title": "@auto_punditz if you have vinfast data why don't u include it? @auto_punditz",
+                "summary": "@auto_punditz if you have vinfast data why don't u include it? @auto_punditz",
+                "url": "https://x.com/MrBsCoffee30/status/2082336303438594202",
+                "source": "@MrBsCoffee30",
+                "date": "Wed Jul 29 05:23:57 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "80"
+                }
+              },
+              {
+                "title": "@casloslim2 VinFast, 11 năm, quá đỉnh!",
+                "summary": "@casloslim2 VinFast, 11 năm, quá đỉnh!",
+                "url": "https://x.com/0x0217/status/2082335741598945430",
+                "source": "@0x0217",
+                "date": "Wed Jul 29 05:21:43 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "7"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_social_search_top_viral",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "social_search_top",
+        "difficulty": "medium",
+        "what_it_tests": "Yêu cầu bài nổi bật/viral -> search_type Top cho iPhone 18."
+      },
+      "input": "Cho mình các bài đăng nổi bật nhất về iPhone 18 trên Twitter",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "iPhone 18",
+              "search_type": "Top"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "iPhone 18",
+              "search_type": "Top"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "iPhone 18",
+            "search_type": "Top"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "iPhone 18",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "Iphone 18 pro max🩵😍😍",
+                "summary": "Iphone 18 pro max🩵😍😍\n\nTag that mutual you want to get this for you😁 https://t.co/eL1F54tRST",
+                "url": "https://x.com/darlytheboy/status/2082393244940267612",
+                "source": "@darlytheboy",
+                "date": "Wed Jul 29 09:10:13 +0000 2026",
+                "metrics": {
+                  "favorites": 2,
+                  "retweets": 0,
+                  "views": "651"
+                }
+              },
+              {
+                "title": "New rumors that Apple is moving away from the current industry standard USB-C ports with the iPhone 18",
+                "summary": "New rumors that Apple is moving away from the current industry standard USB-C ports with the iPhone 18\n\nThis means you would need to purchase all the new charges for your home, vehicles and accessories\n\nJust by switching the charger, this would generate Apple $1.2–$5 billion in additional revenue from chargers/accessories sales alone in the first 1–2 years",
+                "url": "https://x.com/WallStreetApes/status/2022672178932764849",
+                "source": "@WallStreetApes",
+                "date": "Sat Feb 14 14:00:01 +0000 2026",
+                "metrics": {
+                  "favorites": 1324,
+                  "retweets": 295,
+                  "views": "444215"
+                }
+              },
+              {
+                "title": "you + nano banana pro + kling 2.6 = the end of $400 UGC",
+                "summary": "you + nano banana pro + kling 2.6 = the end of $400 UGC\n\nThis is the cleanest 35-second walkthrough of the AI-UGC category I've seen.\n\n0:18 in. Same blonde, same face, now holding a Stanley cup, zero drift. Character consistency solved in one tool. \n\nThen 0:26 - that same static image drops into Kling 2.6 and the lip-sync lands tighter than the paid UGC clip in your feed right now. AI-generated persona via a single prompt philosophy: \"natural lighting, vertical iPhone framing.\"\n\nThat's the whole stack. Then I opened the article below. Someone mapped the exact seam where this workflow crosses from \"obviously AI\" to what the creator lands at 0:32: \"nothing that screams AI.\"\n\nThree steps. Two consumer tools. Thirty-five seconds of proof.\n\nThe video is the proof the model works. The article is what happens when you understand why this specific combo - Nano Banana Pro → Kling 2.6 - is the one that finally broke the tell.\n\nHuman UGC creators built the $400-a-clip economy over years. The new version is doing it in an afternoon. The brief is the same. The output is 40x cheaper.\n\nRead it tonight.",
+                "url": "https://x.com/0_x_Bender/status/2082167711002661278",
+                "source": "@0_x_Bender",
+                "date": "Tue Jul 28 18:14:01 +0000 2026",
+                "metrics": {
+                  "favorites": 21,
+                  "retweets": 1,
+                  "views": "1362"
+                }
+              },
+              {
+                "title": "🔥🚨DEVELOPING: Apple’s foldable iPhone is reportedly on track for a September release with the iPhone 18 Pro. While suppl",
+                "summary": "🔥🚨DEVELOPING: Apple’s foldable iPhone is reportedly on track for a September release with the iPhone 18 Pro. While supply will most likely be limited initially. \n\nThis video shared a tech developer shows a concept of how the fold is expected to perform.  https://t.co/vltkjCzQxS",
+                "url": "https://x.com/dom_lucre/status/2041948348509241434",
+                "source": "@dom_lucre",
+                "date": "Wed Apr 08 18:36:38 +0000 2026",
+                "metrics": {
+                  "favorites": 2692,
+                  "retweets": 265,
+                  "views": "1150432"
+                }
+              },
+              {
+                "title": "💻 ShiftDelete: \"📲 iPhone kiralama dönemi başlıyor!",
+                "summary": "💻 ShiftDelete: \"📲 iPhone kiralama dönemi başlıyor!\n\nAylık yaklaşık 800 TL'ye (18$) en güncel iPhone modelini kiralar mıydınız?\n\nApple, yeni \"Apple Upgrade\" cihaz kiralama programını resmen duyurdu! 🚀\" #çarşamba https://t.co/aPls4si0HA",
+                "url": "https://x.com/timelinep001/status/2082397523805630689",
+                "source": "@timelinep001",
+                "date": "Wed Jul 29 09:27:13 +0000 2026",
+                "metrics": {
+                  "favorites": 1,
+                  "retweets": 0,
+                  "views": "4"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_missing_keyword_clarify",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "clarify_missing_brand",
+        "difficulty": "medium",
+        "what_it_tests": "Thiếu từ khóa/thương hiệu -> clarify xin keyword, không tự đoán."
+      },
+      "input": "Theo dõi thảo luận mới nhất trên X giúp mình",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn đang muốn theo dõi thảo luận về chủ đề, sản phẩm, hoặc thương hiệu nào trên X?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn đang muốn theo dõi thảo luận về chủ đề, sản phẩm, hoặc thương hiệu nào trên X?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn đang muốn theo dõi thảo luận về chủ đề, sản phẩm, hoặc thương hiệu nào trên X?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G04_out_of_scope_math",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "out_of_scope_math",
+        "difficulty": "easy",
+        "what_it_tests": "Câu hỏi toán học ngoài phạm vi Social Listening -> từ chối, không gọi tool."
+      },
+      "input": "Tính đạo hàm bậc hai của hàm f(x) = x^3 + 2x",
+      "expect": {
+        "no_tool": true,
+        "behavior": "refuse"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Yêu cầu của bạn về việc tính đạo hàm bậc hai của hàm \\( f(x) = x^3 + 2x \\) nằm ngoài phạm vi của tôi như một tác nhân theo dõi lắng nghe xã hội. Tuy nhiên, tôi có thể hướng dẫn bạn cách thực hiện điều này.\n\n1. Tính đạo hàm bậc nhất \\( f'(x) \\):\n   \\[\n   f'(x) = 3x^2 + 2\n   \\]\n\n2. Tính đạo hàm bậc hai \\( f''(x) \\):\n   \\[\n   f''(x) = 6x\n   \\]\n\nNếu bạn cần thêm thông tin hoặc có câu hỏi khác, hãy cho tôi biết!",
+        "case_failure_type": "out_of_scope",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "G05_confirm_before_send_telegram",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "confirm_before_send",
+        "difficulty": "medium",
+        "what_it_tests": "Hành động gửi báo cáo Telegram -> bắt buộc xác nhận yes_no trước."
+      },
+      "input": "Đăng báo cáo Social Listening VinFast lên kênh Telegram công ty",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có chắc chắn muốn gửi bản tin này lên Telegram không?",
+              "response_type": "yes_no"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có chắc chắn muốn gửi bản tin này lên Telegram không?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có chắc chắn muốn gửi bản tin này lên Telegram không?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "GM01_clarify_then_fill_brand",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_fill_brand",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: hỏi thiếu thông tin rồi bổ sung brand Grab và limit=5."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Theo dõi 5 bài đăng mới nhất trên X"
+        },
+        {
+          "role": "user",
+          "content": "Về thương hiệu Grab nhé"
+        },
+        {
+          "role": "user",
+          "content": "Giữ nguyên 5 bài"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "Grab",
+              "search_type": "Latest",
+              "limit": 5
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "Grab",
+              "search_type": "Latest",
+              "limit": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "Grab",
+            "search_type": "Latest",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "Grab",
+            "search_type": "Latest",
+            "items": [
+              {
+                "title": "🔞บุหรี่ไฟฟ้า พอตใช้แล้วทิ้ง พอตเค⚡️ส่งด่วนแมส(𝐋𝐚𝐥𝐚𝐦𝐨𝐯𝐞 / 𝐆𝐫𝐚𝐛)🛵พื้นที่ กรุงเทพ นนทบุรี ปทุมธานี สมุทรปราการ นครปฐม เชียง",
+                "summary": "🔞บุหรี่ไฟฟ้า พอตใช้แล้วทิ้ง พอตเค⚡️ส่งด่วนแมส(𝐋𝐚𝐥𝐚𝐦𝐨𝐯𝐞 / 𝐆𝐫𝐚𝐛)🛵พื้นที่ กรุงเทพ นนทบุรี ปทุมธานี สมุทรปราการ นครปฐม เชียงใหม่ เชียงราย ขอนแก่น โคราช พัทยา ภูเก็ต ระยอง\n\n🌐https://t.co/Rj6uEC6Ixw\n\n#พอตส่งด่วน #พอตเค #บุหรี่ไฟฟ้า #หัวพอต #พอตใช้แล้วทิ้ง #พอตพร้อมส่ง https://t.co/MeKJXnITPF",
+                "url": "https://x.com/TatjanaStarzetz/status/2082398399937331348",
+                "source": "@TatjanaStarzetz",
+                "date": "Wed Jul 29 09:30:42 +0000 2026",
+                "metrics": {
+                  "favorites": 1,
+                  "retweets": 0,
+                  "views": "2"
+                }
+              },
+              {
+                "title": "We hold until millions  🔥",
+                "summary": "We hold until millions  🔥\n\nthere's a game. you play with a raccoon, catching trash.\nscore 1000+ and you can grab some $JIMOTHY.\n\nGot it here https://t.co/tHDKTsxUkr\n\n#NAVEN https://t.co/drpLitA0HT",
+                "url": "https://x.com/SOLWhaleEntry/status/2082398333008535895",
+                "source": "@SOLWhaleEntry",
+                "date": "Wed Jul 29 09:30:26 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "2"
+                }
+              },
+              {
+                "title": "Kounde, grab this opportunity to play in England please 😭😭",
+                "summary": "Kounde, grab this opportunity to play in England please 😭😭",
+                "url": "https://x.com/odinlad_/status/2082398330445791439",
+                "source": "@odinlad_",
+                "date": "Wed Jul 29 09:30:25 +0000 2026",
+                "metrics": {
+                  "favorites": 1,
+                  "retweets": 1,
+                  "views": "13"
+                }
+              },
+              {
+                "title": "@Booksey @MetaWin strategic partnerships usually separate the long term winners from the projects that just hype up a wh",
+                "summary": "@Booksey @MetaWin strategic partnerships usually separate the long term winners from the projects that just hype up a whitepaper for a monthbest of luck to everyone trying to grab this bonus today",
+                "url": "https://x.com/FroITIA/status/2082398284438552706",
+                "source": "@FroITIA",
+                "date": "Wed Jul 29 09:30:14 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "10"
+                }
+              },
+              {
+                "title": "BALLS! THIS IS WHAT THIS PLACE IS F0R - GRAB YOUR BALLS",
+                "summary": "BALLS! THIS IS WHAT THIS PLACE IS F0R - GRAB YOUR BALLS",
+                "url": "https://x.com/_VoiceOfBob_/status/2082398273684562409",
+                "source": "@_VoiceOfBob_",
+                "date": "Wed Jul 29 09:30:12 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "1"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GM02_correction_search_type",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_search_type_correction",
+        "difficulty": "medium",
+        "what_it_tests": "Multi-turn: sửa từ Latest sang Top cho OpenAI."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm bài đăng mới nhất về OpenAI trên X"
+        },
+        {
+          "role": "user",
+          "content": "Đổi sang lấy các bài nổi bật (top) nhất đi"
+        },
+        {
+          "role": "user",
+          "content": "Vẫn giữ từ khóa OpenAI"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "OpenAI",
+              "search_type": "Top"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "OpenAI",
+              "search_type": "Top"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "OpenAI",
+            "search_type": "Top"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "OpenAI",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "🚨 BOMBA: Altman declara la singularidad… y la factura",
+                "summary": "🚨 BOMBA: Altman declara la singularidad… y la factura\n\n🤖 “Ya estamos en la singularidad. Este es el momento” — Sam Altman, podcast Relentless\n💻 Días antes: modelos de OpenAI se fugan del sandbox y atacan Hugging Face para copiar en un examen\n💰 OpenAI: cerca del billón de dólares de valoración y mirando a bolsa\n✍️ La carta por los modelos abiertos la firman Nvidia, Microsoft, Meta… OpenAI NO\n🗣️ Su marco: “libertad frente a autoritarismo de la IA”. Es decir: no me regulen\n\nEl único vendedor al que le conviene decir que su máquina se le ha ido de las manos.",
+                "url": "https://x.com/Josevizner/status/2082382550161305782",
+                "source": "@Josevizner",
+                "date": "Wed Jul 29 08:27:43 +0000 2026",
+                "metrics": {
+                  "favorites": 26,
+                  "retweets": 3,
+                  "views": "2445"
+                }
+              },
+              {
+                "title": "Gilbert Strang, a quiet MIT professor, picked up a piece of chalk and explained the one skill standing between you and e",
+                "summary": "Gilbert Strang, a quiet MIT professor, picked up a piece of chalk and explained the one skill standing between you and every account you have ever blown.\n\nMIT put the entire course online. it has been free for over twenty years. almost nobody finishes it.\n\nHis point: the market never pays in certainties. it pays in probabilities, and a human gut can barely hold one straight. the math that holds ten thousand at once, weighs them, and collapses them into a single call is linear algebra. it is the branch Citadel and OpenAI both pay $400K to hire for.\n\nhe is not a trading guru. his 18.06 lectures are the most watched math class on the planet.\n\nSkip to where he turns a wall of numbers into one vector. a single object carrying a thousand odds at once, in notation a beginner can follow.\n\nNo slides. no jargon. one piece of chalk.\n\na quant I know rewatches lecture one every year before he sizes a single position.\n\nYou do not have a strategy problem. you have a math problem. the fix has been free for two decades, and you are still guessing.",
+                "url": "https://x.com/0xLoran/status/2081760744358445158",
+                "source": "@0xLoran",
+                "date": "Mon Jul 27 15:16:53 +0000 2026",
+                "metrics": {
+                  "favorites": 349,
+                  "retweets": 58,
+                  "views": "44427"
+                }
+              },
+              {
+                "title": "Kimi CEO Zhilin Yang:",
+                "summary": "Kimi CEO Zhilin Yang:\n\n\"OpenAI didn't invent anything new - it combined three things the world already had\"\n\nhis core belief: AGI needs a new kind of organization more than it needs new technology. traditional structures can't build it. you have to start from scratch\n\nno fundamental blocker in sight. keep doing better lossless compression - you generate higher intelligence. even beyond human\n\n\"Google can produce Transformer. but it can't produce ChatGPT. its organization can't do it\"\n\n~31mins, by @GeekParkHQ \n\nbookmark this, then read the article below ↓",
+                "url": "https://x.com/vartekxx/status/2080782626974056830",
+                "source": "@vartekxx",
+                "date": "Fri Jul 24 22:30:11 +0000 2026",
+                "metrics": {
+                  "favorites": 2016,
+                  "retweets": 293,
+                  "views": "433527"
+                }
+              },
+              {
+                "title": "Sam Altman, CEO of OpenAI: ",
+                "summary": "Sam Altman, CEO of OpenAI: \n\n\"It figured out that it could basically cheat on the test by chaining together multiple zero-day exploits to break out of the sandbox, get access to the internet, and then break through multiple systems on the Hugging Face side to get the answer to the test and look really good on the eval.\"\n\nThat was an unreleased model. Nobody asked it to hack anything. They asked it to score well.\n\nThey paused training.\n\nIt was not trying to escape. It was trying to pass. Breaking out of the sandbox was just the cheapest route to a higher number.\n\nWe keep testing these systems for whether they want to hurt us. This one just wanted a good grade.",
+                "url": "https://x.com/caspr_exe/status/2082153657424834624",
+                "source": "@caspr_exe",
+                "date": "Tue Jul 28 17:18:11 +0000 2026",
+                "metrics": {
+                  "favorites": 99,
+                  "retweets": 9,
+                  "views": "11380"
+                }
+              },
+              {
+                "title": "OpenAI's AI broke out of a locked test environment, got onto the internet, and hacked into Hugging Face's servers. It di",
+                "summary": "OpenAI's AI broke out of a locked test environment, got onto the internet, and hacked into Hugging Face's servers. It did this entirely on its own. No human told it to.\n\nHere's what happened in plain English.\n\nOpenAI was testing how good its newest AI models are at hacking. They put the AI on a locked computer with no internet access and gave it a cybersecurity challenge to solve.\n\nThe AI couldn't solve it the normal way. So it started looking for a way out.\n\nIt found a software bug that nobody knew about. It used that bug to escape the locked computer and get onto the internet.\n\nOnce online, the AI figured out that Hugging Face, a platform where AI companies store their models and data, might have the answers to its test.\n\nIt found stolen login details and discovered another unknown bug in Hugging Face's software. It combined both to break into their servers and grab the test answers.\n\nIt did all of this to cheat on a test.\n\nHugging Face's security team caught it and shut it down. Both companies are now working together on the investigation.\n\nThe part that should get your attention is that nobody programmed any of this. The AI picked its own targets, chained together multiple attack methods, and pulled it off across two different companies' systems without a single human telling it what to do.",
+                "url": "https://x.com/alex_prompter/status/2079951458137763840",
+                "source": "@alex_prompter",
+                "date": "Wed Jul 22 15:27:25 +0000 2026",
+                "metrics": {
+                  "favorites": 76758,
+                  "retweets": 14385,
+                  "views": "7018826"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GM03_carryover_brand_timeframe",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_carryover_timeframe",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: carryover timeframe=day và topic=news với query Be mới."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tin tức VinFast hôm nay trên web thế nào?"
+        },
+        {
+          "role": "user",
+          "content": "Chuyển sang theo dõi từ khóa Be"
+        },
+        {
+          "role": "user",
+          "content": "Vẫn là tin tức hôm nay nhé"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Be",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Be",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Be",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Be",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "Brian Thomas Jr.: I want to be undeniable - Yahoo Sports",
+                "url": "https://sports.yahoo.com/articles/brian-thomas-jr-want-undeniable-194028512.html",
+                "source": "sports.yahoo.com",
+                "summary": "# Brian Thomas Jr.: I want to be undeniable. Jaguars wide receiver Brian Thomas Jr. would like to put the 2025 season in the rearview mirror. Thomas had 87 catches for 1,282 yards and 10 touchdowns after being drafted in the first round in 2024, but his second season halted all talk of him jumping right to the top of the list of NFL wideouts. Thomas caught less than half of the balls thrown his way and he was credited with 10 drops en route to 48 catches for 707 yards and two touchdowns. That talk and other doubts about his upside still found their way to Thomas and he credits a conversation with his father for putting him in the right mindset to bounce back. \"We heard everything that was going on, all that, but he just told me, 'Come out here and be undeniable,'\" Thomas said, via Mark Lane of the Associated Press. I want to be undeniable.\".",
+                "score": 0.08350859
+              },
+              {
+                "title": "The Top 100 prospects most likely to be dealt by the Trade Deadline are ... - MLB.com",
+                "url": "https://www.mlb.com/news/mlb-top-100-prospects-most-likely-to-be-traded-2026",
+                "source": "mlb.com",
+                "summary": "# The Top 100 prospects most likely to be dealt by the Trade Deadline are ... As teams prepare to make a splash in the playoff race at the Trade Deadline, which players could make up the prospect capital on the move? On the latest MLB Pipeline Podcast, Jim Callis and Jonathan Mayo -- along with host Jason Ratliff -- examined which Top 100 prospects appear most likely to be dealt before Monday’s 6 p.m. ET deadline. I think he winds up on a corner long term, but I think he's got the power to make that work. I think he could be a 20-20 guy, if not more, on a corner, and I think he'd be a plus defender on a corner. Like he's maybe fourth in the pecking order if you're really lining up all the outfielders, so they'd be more willing to trade him. If the Dodgers make a significant move, I expect Zyhir Hope to be part of that trade.",
+                "score": 0.079818025
+              },
+              {
+                "title": "Moburst develops AI engine optimization capabilities for established companies - TechCrunch",
+                "url": "https://techcrunch.com/press-release/moburst-develops-ai-engine-optimization-capabilities-for-established-companies/",
+                "source": "techcrunch.com",
+                "summary": "Mobile growth agency Moburst has built out a dedicated AI Engine Optimization practice aimed at established companies with existing app portfolios, betting that the category still lacks agencies with real depth rather than a rebranded service page. AI Engine Optimization, more commonly abbreviated AEO for Answer Engine Optimization, is the practice of structuring a brand’s content and web presence so AI systems such as ChatGPT, Perplexity, and Google’s AI Overviews can confidently cite it when answering a user’s question directly, rather than showing a ranked list of links. For established companies vetting an AEO partner, the practical test is whether the agency can point to specific app-store-side work, not just web content changes, and whether it can describe a concrete process for reconciling inconsistent brand descriptions across many independent sources rather than treating that as someone else’s problem.",
+                "score": 0.07146812
+              },
+              {
+                "title": "A ring before a playoff win for Justin Herbert, who gets engaged to singer Madison Beer - Greenwich Time",
+                "url": "https://www.greenwichtime.com/sports/article/a-ring-before-a-playoff-win-for-justin-herbert-22363893.php",
+                "source": "greenwichtime.com",
+                "summary": "# A ring before a playoff win for Justin Herbert, who gets engaged to singer Madison Beer. (AP) — Justin Herbert has his first ring, and it's not on the football field. It was accompanied by a photo of Herbert on bended knee holding a ring box in front of a smiling Beer, who was crouched with her right hand on his left knee. Beer attended some Chargers games last season, and she and Herbert kissed on the sidelines at one game. When Herbert missed part of voluntary offseason workouts to travel with Beer on her tour, Harbaugh said, “Do you need a ride to the airport?”. Beer, 27, first gained widespread notice when Justin Bieber shared a video link of her singing “At Last” to his social media followers in 2012. The best home remodelers in CT. Choose from the best home remodelers in CT and find a team that matches your style, not just your square footage.",
+                "score": 0.06563491
+              },
+              {
+                "title": "Three Major Questions the Tennessee Titans Face During Training Camp - Yahoo Sports",
+                "url": "https://sports.yahoo.com/articles/three-major-questions-tennessee-titans-164707438.html",
+                "source": "sports.yahoo.com",
+                "summary": "Training camp is finally here for the Tennessee Titans, and as always, there are plenty of questions to be answered. This leaves unknown territory at right guard and center, which seems to be where the Titans will struggle a ton this season. As of now, at the right guard position, it seems that the starter will be Cordell Volson, who missed his 2025 season with the Bengals due to a shoulder injury. The Titans also drafted Fernando Carmona this offseason, but it remains unknown if he will be equipped enough to be a starter in Week 1 for this Titans offensive line. In a similar fashion to Carmona, it remains unknown if he will be ready to take on a starting role this quickly with the Titans. The carries were a hefty amount for the running back, but as for this season, the Titans could have some help at the running back position.",
+                "score": 0.065419644
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GM04_switch_web_to_social",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_switch_web_to_social",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: switch từ web lookup sang social_search Top."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin tức web về iPhone 16"
+        },
+        {
+          "role": "user",
+          "content": "Bỏ web tin tức, chuyển sang tìm thảo luận trên X đi"
+        },
+        {
+          "role": "user",
+          "content": "Lấy bài viết nổi bật (top) về iPhone 16"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "iPhone 16",
+              "search_type": "Top"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "iPhone 16",
+              "search_type": "Top"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "iPhone 16",
+            "search_type": "Top"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "iPhone 16",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "【速報】iPhoneが価格改定",
+                "summary": "【速報】iPhoneが価格改定\n\n・iPhone 17 Pro Max：19.4万 → 21.4万（+ 2万円)\n・iPhone 17 Pro：17.9万 → 19.4万（+ 1.5万円)\n・iPhone Air：15.9万 → 17.7万（+1.8万円）\n・iPhone 17：12.9万 → 14.2万（+1.3万円)\n・iPhone 17e：9.9万 → 10.7万（+0.8万円)\n・iPhone 16：11.4万 → 12.4万(＋1万)\n\n※いずれも税込、最小構成の価格です",
+                "url": "https://x.com/hamu_3nd/status/2078146532860416145",
+                "source": "@hamu_3nd",
+                "date": "Fri Jul 17 15:55:18 +0000 2026",
+                "metrics": {
+                  "favorites": 6209,
+                  "retweets": 2677,
+                  "views": "3442814"
+                }
+              },
+              {
+                "title": "https://t.co/gnexZhFhHX",
+                "summary": "https://t.co/gnexZhFhHX\n\niPhone 17シリーズがどれだけ革命的な成長を遂げたかわかりますね。\n\n【100%換算での比較】\n 13 Pro → 16 Pro\n 約6時間18分 → 約8時間29分（+2時間11分）\n\n 16 Pro → 17 Pro\n 約8時間29分 → 11時間52分（+3時間23分）\n\n3世代分以上の成長... https://t.co/0EJijGQ6aL",
+                "url": "https://x.com/mizumaro_gadget/status/2081027369826148730",
+                "source": "@mizumaro_gadget",
+                "date": "Sat Jul 25 14:42:43 +0000 2026",
+                "metrics": {
+                  "favorites": 42,
+                  "retweets": 1,
+                  "views": "84754"
+                }
+              },
+              {
+                "title": "Coolest new iPhone 16 feature? The camera control button! https://t.co/6NpcIb8NTW",
+                "summary": "Coolest new iPhone 16 feature? The camera control button! https://t.co/6NpcIb8NTW",
+                "url": "https://x.com/ijustine/status/1833258846305005771",
+                "source": "@ijustine",
+                "date": "Mon Sep 09 21:39:03 +0000 2024",
+                "metrics": {
+                  "favorites": 210110,
+                  "retweets": 14346,
+                  "views": "44424211"
+                }
+              },
+              {
+                "title": "iPhone || Foreign Used || Excellent Condition || Available 🔥 ",
+                "summary": "iPhone || Foreign Used || Excellent Condition || Available 🔥 \n\nXR 128GB - 205,000\nXR 256GB - 230,000\n\n11 128GB - 240,000\n11 256GB - 260,000\n11 Pro 256GB - 295,000\n11 Pro Max 256GB - 330,000\n\n12 128GB - 285,000\n12 256GB - 300,000\n12 Pro 128GB - 355,000\n12 Pro 256GB - 370,000\n12 Pro Max 128GB - 430,000\n12 Pro Max 256GB - 455,000\n12 Pro Max 512GB - 490,000\n\n13 128GB - 360,000\n13 256GB - 385,000\n13 Pro 128GB - 480,000\n\n14 128GB - 420,000\n14 256GB - 460,000\n14 Plus 128GB - 460,000\n14 Plus 256GB - 495,000\n\n15 128GB - 590,000\n15 256GB - 650,000\n15 Plus 128GB - 650,000\n15 Pro Max 256GB - 930,000\n15 Pro Max 512GB - 980,000\n15 Pro Max 1TB - 1,040,000\n\n16 128GB - 750,000\n16 Plus 128GB - 830,000\n16  Plus 256GB - 940,000\n\nNationwide Delivery \n\nKindly call/whatsapp: 09134447334\n\nShop 1A, (First Floor) Mokland Plaza\n3-9, Olu Koleosho Street, Off Simbiat Abiola Rd, Computer Village, Ikeja, Lagos.\n\nLandmark: Purch on Medical Road",
+                "url": "https://x.com/Hatzgadgets/status/2082389389401878698",
+                "source": "@Hatzgadgets",
+                "date": "Wed Jul 29 08:54:54 +0000 2026",
+                "metrics": {
+                  "favorites": 5,
+                  "retweets": 1,
+                  "views": "661"
+                }
+              },
+              {
+                "title": "Hot and Sweet giveaway deal",
+                "summary": "Hot and Sweet giveaway deal\n\n16pro max 256gb eSIM unlocked IDM 91BH *_N780,000*_\n\n#Kennismith https://t.co/pHYrgufk7R",
+                "url": "https://x.com/relish_sweetboi/status/2082391730289017147",
+                "source": "@relish_sweetboi",
+                "date": "Wed Jul 29 09:04:12 +0000 2026",
+                "metrics": {
+                  "favorites": 1,
+                  "retweets": 0,
+                  "views": "36"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GM05_correction_handle_brand",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_correction_handle",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: sửa handle từ tesla sang VinFastOfficial và limit 5->3."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Lấy 5 tweet mới nhất của Tesla"
+        },
+        {
+          "role": "user",
+          "content": "À nhầm, lấy tweet của VinFastOfficial"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ lấy 3 tweet thôi"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "VinFastOfficial",
+              "limit": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "VinFastOfficial",
+              "limit": 3
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "VinFastOfficial",
+            "limit": 3
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "VinFastOfficial",
+            "items": [
+              {
+                "title": "Building the infrastructure behind every delivery.",
+                "summary": "Building the infrastructure behind every delivery.\n\nVinFast is partnering with Bespoke Logistics to strengthen electric motorcycle inspection, preparation, logistics and aftersales capabilities in the Philippine market.\n\nA stronger local foundation for VinFast’s first e-motorcycle deliveries in the Philippines.\n\n#VinFast #VFS #Philippines #ElectricMotorcycles #GreenMobility",
+                "url": "https://x.com/VinFastofficial/status/2081769064733831247",
+                "source": "@VinFastofficial",
+                "date": "Mon Jul 27 15:49:57 +0000 2026",
+                "metrics": {
+                  "favorites": 12,
+                  "retweets": 3,
+                  "views": "637"
+                }
+              },
+              {
+                "title": "ICYMI: Building manufacturing capacity closer to key growth markets.",
+                "summary": "ICYMI: Building manufacturing capacity closer to key growth markets.\n\nAt Bloomberg’s #SustainableBusinessSummit, Anne Pham discussed how VinFast’s manufacturing hubs in India and Indonesia are positioned as export hubs—supporting a more localized and resilient global supply chain.\n\nWatch the full conversation below.\n\n#VinFast #VFS #SustainableBizSummit #EV #Manufacturing #SupplyChain",
+                "url": "https://x.com/VinFastofficial/status/2080855306851213502",
+                "source": "@VinFastofficial",
+                "date": "Sat Jul 25 03:19:00 +0000 2026",
+                "metrics": {
+                  "favorites": 14,
+                  "retweets": 2,
+                  "views": "1014"
+                }
+              },
+              {
+                "title": "Energy volatility is accelerating the shift to EVs! ",
+                "summary": "Energy volatility is accelerating the shift to EVs! \n\nAt the Bloomberg Sustainable Business Summit, Anne Pham, CFA shared how tensions around the Strait of Hormuz are strengthening the case for electrification—with growing BEV sales in Indonesia, record monthly sales in the Philippines and VinFast leading Vietnam’s automotive market.",
+                "url": "https://x.com/VinFastofficial/status/2080099325749895561",
+                "source": "@VinFastofficial",
+                "date": "Thu Jul 23 01:15:00 +0000 2026",
+                "metrics": {
+                  "favorites": 13,
+                  "retweets": 3,
+                  "views": "944"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

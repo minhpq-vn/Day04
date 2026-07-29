@@ -1,238 +1,108 @@
-﻿{
+{
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
-  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
-  "allowed_failure_types": [
-    "wrong_tool",
-    "wrong_arg_value",
-    "wrong_boundary",
-    "unnecessary_tool",
-    "out_of_scope",
-    "missing_info"
-  ],
+  "description": "Bộ 10 case đánh giá chuyên biệt cho đề tài Social Listening Monitor: 5 single-turn và 5 multi-turn.",
+  "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
   "cases": [
     {
-      "id": "TWG01_account_timeline",
-      "phase": "B",
-      "suite": "group",
-      "query": "Get 7 recent tweets posted by @karpathy.",
+      "id": "G01_social_search_brand",
+      "phase": "B", "suite": "group",
+      "query": "Theo dõi thảo luận mới nhất về VinFast trên X",
       "failure_type": "wrong_tool",
-      "expect": {
-        "tool_calls": [
-          {
-            "name": "timeline",
-            "args": { "screenname": "karpathy", "limit": 7 }
-          }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "Account posts require timeline, no @, and limit=7."
-      }
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "VinFast", "search_type": "Latest"}}]},
+      "metadata": {"skill": "social_search_brand", "difficulty": "easy", "what_it_tests": "Tìm thảo luận mới nhất về thương hiệu VinFast trên X -> social_search query VinFast, search_type Latest."}
     },
     {
-      "id": "TWG02_topic_latest",
-      "phase": "B",
-      "suite": "group",
-      "query": "Find the 8 latest Twitter posts about AI coding agents.",
-      "failure_type": "wrong_tool",
-      "expect": {
-        "tool_calls": [
-          {
-            "name": "social_search",
-            "args": {
-              "query": "AI coding agents",
-              "search_type": "Latest",
-              "limit": 8
-            }
-          }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "Posts about a topic require social_search with Latest."
-      }
-    },
-    {
-      "id": "TWG03_topic_top",
-      "phase": "B",
-      "suite": "group",
-      "query": "Show me the 6 most popular tweets about Claude Code.",
+      "id": "G02_social_search_top_viral",
+      "phase": "B", "suite": "group",
+      "query": "Cho mình các bài đăng nổi bật nhất về iPhone 18 trên Twitter",
       "failure_type": "wrong_arg_value",
-      "expect": {
-        "tool_calls": [
-          {
-            "name": "social_search",
-            "args": { "query": "Claude Code", "search_type": "Top", "limit": 6 }
-          }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "Most popular must map to search_type=Top."
-      }
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "iPhone 18", "search_type": "Top"}}]},
+      "metadata": {"skill": "social_search_top", "difficulty": "medium", "what_it_tests": "Yêu cầu bài nổi bật/viral -> search_type Top cho iPhone 18."}
     },
     {
-      "id": "TWG04_missing_topic",
-      "phase": "B",
-      "suite": "group",
-      "query": "Find 10 of the most discussed tweets for me.",
+      "id": "G03_missing_keyword_clarify",
+      "phase": "B", "suite": "group",
+      "query": "Theo dõi thảo luận mới nhất trên X giúp mình",
       "failure_type": "missing_info",
-      "expect": {
-        "tool_calls": [
-          { "name": "clarify", "args": { "response_type": "text" } }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "A missing topic requires clarification instead of guessing."
-      }
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"skill": "clarify_missing_brand", "difficulty": "medium", "what_it_tests": "Thiếu từ khóa/thương hiệu -> clarify xin keyword, không tự đoán."}
     },
     {
-      "id": "TWG05_twitter_and_web",
-      "phase": "B",
-      "suite": "group",
-      "query": "Find the latest Twitter reactions about humanoid robots and compare them with web news from this month.",
-      "failure_type": "wrong_tool",
-      "expect": {
-        "tool_calls": [
-          {
-            "name": "social_search",
-            "args": { "query": "humanoid robots", "search_type": "Latest" }
-          },
-          {
-            "name": "lookup",
-            "args": {
-              "query": "humanoid robots",
-              "topic": "news",
-              "timeframe": "month"
-            }
-          }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "A social and web comparison requires both tools."
-      }
+      "id": "G04_out_of_scope_math",
+      "phase": "B", "suite": "group",
+      "query": "Tính đạo hàm bậc hai của hàm f(x) = x^3 + 2x",
+      "failure_type": "out_of_scope",
+      "expect": {"no_tool": true, "behavior": "refuse"},
+      "metadata": {"skill": "out_of_scope_math", "difficulty": "easy", "what_it_tests": "Câu hỏi toán học ngoài phạm vi Social Listening -> từ chối, không gọi tool."}
     },
     {
-      "id": "TWG06_fill_account",
-      "phase": "B",
-      "suite": "group",
+      "id": "G05_confirm_before_send_telegram",
+      "phase": "B", "suite": "group",
+      "query": "Đăng báo cáo Social Listening VinFast lên kênh Telegram công ty",
+      "failure_type": "wrong_boundary",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "yes_no"}}]},
+      "metadata": {"skill": "confirm_before_send", "difficulty": "medium", "what_it_tests": "Hành động gửi báo cáo Telegram -> bắt buộc xác nhận yes_no trước."}
+    },
+    {
+      "id": "GM01_clarify_then_fill_brand",
+      "phase": "B", "suite": "group",
       "turns": [
-        { "role": "user", "content": "Get 4 recent tweets from an account." },
-        { "role": "user", "content": "The account is @ylecun." },
-        { "role": "user", "content": "Keep the original count." }
+        {"role": "user", "content": "Theo dõi 5 bài đăng mới nhất trên X"},
+        {"role": "user", "content": "Về thương hiệu Grab nhé"},
+        {"role": "user", "content": "Giữ nguyên 5 bài"}
       ],
       "failure_type": "missing_info",
-      "expect": {
-        "tool_calls": [
-          { "name": "timeline", "args": { "screenname": "ylecun", "limit": 4 } }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "Fill the account later and retain limit=4."
-      }
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "Grab", "search_type": "Latest", "limit": 5}}]},
+      "metadata": {"skill": "multiturn_fill_brand", "difficulty": "hard", "what_it_tests": "Multi-turn: hỏi thiếu thông tin rồi bổ sung brand Grab và limit=5."}
     },
     {
-      "id": "TWG07_by_to_about",
-      "phase": "B",
-      "suite": "group",
+      "id": "GM02_correction_search_type",
+      "phase": "B", "suite": "group",
       "turns": [
-        {
-          "role": "user",
-          "content": "Get the latest tweet posted by Sam Altman."
-        },
-        {
-          "role": "user",
-          "content": "No, show what the community says about Sam Altman."
-        },
-        { "role": "user", "content": "Get the 9 latest posts." }
+        {"role": "user", "content": "Tìm bài đăng mới nhất về OpenAI trên X"},
+        {"role": "user", "content": "Đổi sang lấy các bài nổi bật (top) nhất đi"},
+        {"role": "user", "content": "Vẫn giữ từ khóa OpenAI"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "OpenAI", "search_type": "Top"}}]},
+      "metadata": {"skill": "multiturn_search_type_correction", "difficulty": "medium", "what_it_tests": "Multi-turn: sửa từ Latest sang Top cho OpenAI."}
+    },
+    {
+      "id": "GM03_carryover_brand_timeframe",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tin tức VinFast hôm nay trên web thế nào?"},
+        {"role": "user", "content": "Chuyển sang theo dõi từ khóa Be"},
+        {"role": "user", "content": "Vẫn là tin tức hôm nay nhé"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"query": "Be", "topic": "news", "timeframe": "day"}}]},
+      "metadata": {"skill": "multiturn_carryover_timeframe", "difficulty": "hard", "what_it_tests": "Multi-turn: carryover timeframe=day và topic=news với query Be mới."}
+    },
+    {
+      "id": "GM04_switch_web_to_social",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm tin tức web về iPhone 16"},
+        {"role": "user", "content": "Bỏ web tin tức, chuyển sang tìm thảo luận trên X đi"},
+        {"role": "user", "content": "Lấy bài viết nổi bật (top) về iPhone 16"}
       ],
       "failure_type": "wrong_tool",
-      "expect": {
-        "tool_calls": [
-          {
-            "name": "social_search",
-            "args": {
-              "query": "Sam Altman",
-              "search_type": "Latest",
-              "limit": 9
-            }
-          }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "Switch from posts by a person to posts about them."
-      }
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "iPhone 16", "search_type": "Top"}}]},
+      "metadata": {"skill": "multiturn_switch_web_to_social", "difficulty": "hard", "what_it_tests": "Multi-turn: switch từ web lookup sang social_search Top."}
     },
     {
-      "id": "TWG08_latest_to_top",
-      "phase": "B",
-      "suite": "group",
+      "id": "GM05_correction_handle_brand",
+      "phase": "B", "suite": "group",
       "turns": [
-        {
-          "role": "user",
-          "content": "Find 12 latest tweets about OpenAI Codex."
-        },
-        { "role": "user", "content": "Change that to the most popular posts." },
-        { "role": "user", "content": "Keep 12 posts and the same topic." }
+        {"role": "user", "content": "Lấy 5 tweet mới nhất của Tesla"},
+        {"role": "user", "content": "À nhầm, lấy tweet của VinFastOfficial"},
+        {"role": "user", "content": "Chỉ lấy 3 tweet thôi"}
       ],
       "failure_type": "wrong_arg_value",
-      "expect": {
-        "tool_calls": [
-          {
-            "name": "social_search",
-            "args": {
-              "query": "OpenAI Codex",
-              "search_type": "Top",
-              "limit": 12
-            }
-          }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "Change Latest to Top while retaining query and limit."
-      }
-    },
-    {
-      "id": "TWG09_topic_correction",
-      "phase": "B",
-      "suite": "group",
-      "turns": [
-        { "role": "user", "content": "Find tweets about electric vehicles." },
-        { "role": "user", "content": "Narrow it down to VinFast VF3 only." },
-        { "role": "user", "content": "Give me the 5 latest posts." }
-      ],
-      "failure_type": "wrong_arg_value",
-      "expect": {
-        "tool_calls": [
-          {
-            "name": "social_search",
-            "args": {
-              "query": "VinFast VF3",
-              "search_type": "Latest",
-              "limit": 5
-            }
-          }
-        ]
-      },
-      "metadata": {
-        "what_it_tests": "A later specific topic replaces the earlier broad topic."
-      }
-    },
-    {
-      "id": "TWG10_cancel_search",
-      "phase": "B",
-      "suite": "group",
-      "turns": [
-        { "role": "user", "content": "Find the latest tweets about GPT-5." },
-        { "role": "user", "content": "Cancel that search." },
-        {
-          "role": "user",
-          "content": "Briefly tell me what Twitter tasks you support."
-        }
-      ],
-      "failure_type": "unnecessary_tool",
-      "expect": { "no_tool": true },
-      "metadata": {
-        "what_it_tests": "The cancelled search and final capability question require no tool."
-      }
+      "expect": {"tool_calls": [{"name": "timeline", "args": {"screenname": "VinFastOfficial", "limit": 3}}]},
+      "metadata": {"skill": "multiturn_correction_handle", "difficulty": "hard", "what_it_tests": "Multi-turn: sửa handle từ tesla sang VinFastOfficial và limit 5->3."}
     }
   ]
 }
