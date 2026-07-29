@@ -10,8 +10,7 @@
 | **Role 2: Tool Engineer** | `tools/social_search/tool.py` và tool mới | Kiểm tra RapidAPI Twitter API45, bổ sung tool/`TOOL.md`, bảo đảm tool trả lỗi thay vì crash. | Nhữ Văn Hùng | 2A202601372 |
 | **Role 3: Prompt Engineer** | `artifacts/system_prompt.md` | Viết guardrails, routing và quy tắc tổng hợp; chỉ đổi prompt theo hypothesis đã ghi. | Phạm Quốc Minh | 2A202601494 |
 | **Role 4: Core Developer / Integrator** | UI, `chat.py`, `tools/__init__.py`, `artifacts/tools.yaml` | Tích hợp tool, dựng UI/trace, đồng bộ declaration và chạy eval. | Nguyễn Văn Hưng | 2A202601284 |
-| **Role 5A: Trace Analyst** | `analysis/base_runs.csv`, `artifacts/version_log.csv` | Phân tích run JSON, failure, metric/hash và ghi evidence v0–v3. | Đỗ Việt Tùng | 2A202601876 |
-| **Role 5B: Flowchart & Report Architect** | `artifacts/REPORT.md` | Vẽ luồng monitoring, chuẩn bị report/demo có dẫn chứng run thật. | Bùi Thu Trang | 2A202601758 |
+| **Role 5: Trace, Flowchart & Report Architect** | `analysis/base_runs.csv`, `artifacts/version_log.csv`, `artifacts/REPORT.md` | Phân tích run JSON/failure/metric/hash, vẽ luồng monitoring và chuẩn bị report/demo có dẫn chứng run thật. | Bùi Thu Trang | 2A202601758 |
 
 Mỗi người ưu tiên file mình phụ trách. Nếu rename tool, chỉ đồng bộ field tên tool trong fixed eval; không sửa query, expected arguments hoặc expected behavior của `data/eval_base.json`.
 
@@ -185,7 +184,7 @@ python run_eval.py --provider openrouter --version v0 --suite base --eval-cases 
 
 Run JSON cũng lưu `artifact_version`, `prompt_hash`, `tools_hash`, actual tool calls, và actual tool results. Đó là evidence chính cho report.
 
-**Phân vai v0:** Role 4 chạy và lưu run; Role 5A đọc failure/mismatch/tool call, Role 1 xác nhận base eval không bị sửa, Role 2 kiểm tra lỗi tool. Role 3 và 5B chỉ ghi evidence/candidate hypothesis, chưa tối ưu artifact.
+**Phân vai v0:** Role 4 chạy và lưu run; Role 5 đọc failure/mismatch/tool call, Role 1 xác nhận base eval không bị sửa, Role 2 kiểm tra lỗi tool. Role 3 và 5 chỉ ghi evidence/candidate hypothesis, chưa tối ưu artifact.
 
 Optional: parse run JSON into a flat CSV table for analysis:
 
@@ -218,10 +217,10 @@ Không chạy cả ba lệnh liên tiếp. Các hypothesis sau chỉ là candida
 
 | Version | Hypothesis cần kiểm chứng | Một thay đổi trước run | Evidence cần so | Chủ trách nhiệm |
 |---|---|---|---|---|
-| **v0** | Baseline chưa có kết luận, cần đo routing/arguments thực tế. | Không tối ưu trước run. | 4 metric, `provider_error_cases=0`, `measured_cases=total_cases`, hashes và từng failure. | Role 4, 5A |
-| **v1** | Nếu nhầm `timeline`/`lookup` với `social_search` hoặc nhầm `Latest`/`Top`, routing rule/convention `search_type` chưa rõ. | Sửa prompt **hoặc** declaration để phân biệt search chủ đề, account, Latest và Top. | `tool_routing_accuracy`, `argument_accuracy`, actual calls. | Role 3/4, 5A |
-| **v2** | Nếu agent tự đoán brand/keyword/account/timeframe còn thiếu, điều kiện `clarify` chưa rõ. | Sửa prompt **hoặc** declaration, buộc hỏi thông tin thiếu. | `multiturn_accuracy`, `missing_info`, tool thừa. | Role 3, 1, 5A |
-| **v3** | Nếu agent gọi `lookup`/`fetch` thừa, trộn suy luận với dữ liệu, hoặc tự `send`, boundary/priority tool chưa rõ. | Sửa prompt **hoặc** declaration, ưu tiên social data và confirm trước `send`. | `case_accuracy`, `wrong_boundary`, `unnecessary_tool`, trace. | Role 3/4, 5B |
+| **v0** | Baseline chưa có kết luận, cần đo routing/arguments thực tế. | Không tối ưu trước run. | 4 metric, `provider_error_cases=0`, `measured_cases=total_cases`, hashes và từng failure. | Role 4, 5 |
+| **v1** | Nếu nhầm `timeline`/`lookup` với `social_search` hoặc nhầm `Latest`/`Top`, routing rule/convention `search_type` chưa rõ. | Sửa prompt **hoặc** declaration để phân biệt search chủ đề, account, Latest và Top. | `tool_routing_accuracy`, `argument_accuracy`, actual calls. | Role 3/4, 5 |
+| **v2** | Nếu agent tự đoán brand/keyword/account/timeframe còn thiếu, điều kiện `clarify` chưa rõ. | Sửa prompt **hoặc** declaration, buộc hỏi thông tin thiếu. | `multiturn_accuracy`, `missing_info`, tool thừa. | Role 3, 1, 5 |
+| **v3** | Nếu agent gọi `lookup`/`fetch` thừa, trộn suy luận với dữ liệu, hoặc tự `send`, boundary/priority tool chưa rõ. | Sửa prompt **hoặc** declaration, ưu tiên social data và confirm trước `send`. | `case_accuracy`, `wrong_boundary`, `unnecessary_tool`, trace. | Role 3/4, 5 |
 
 v1–v3 phải là thí nghiệm thật: có failure nguồn, hypothesis, artifact/hash và metric trước–sau. Artifact không đổi không được tính là một vòng tối ưu.
 
@@ -259,7 +258,7 @@ Mỗi case cần:
 File `data/eval_group.json` để trống có chủ đích vì phần team eval phải do chính nhóm tự thiết kế.
 Cả template trong `starter_v0/` và `solution/` đều trống; điều đó không thay đổi yêu cầu đúng 10 case. Xem [2 case mẫu về schema](starter_v0/samples/eval_group.schema.example.json) (không tính vào 10 case và không nộp thay case của team). Với multi-turn, phần tử cuối của `turns` phải là user turn đang được chấm.
 
-Role 1 viết và Role 5A review 10 case để bao phủ: keyword/hashtag search; `Latest` vs `Top`; timeline theo handle; brief có nguồn; thiếu keyword cần `clarify`; phân biệt brand/account; cần thêm web context; URL cần `fetch`; từ chối `send`; và xác nhận `send`. Không đưa API result giả vào expected behavior.
+Role 1 viết và Role 5 review 10 case để bao phủ: keyword/hashtag search; `Latest` vs `Top`; timeline theo handle; brief có nguồn; thiếu keyword cần `clarify`; phân biệt brand/account; cần thêm web context; URL cần `fetch`; từ chối `send`; và xác nhận `send`. Không đưa API result giả vào expected behavior.
 
 Run:
 
