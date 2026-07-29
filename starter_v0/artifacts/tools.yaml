@@ -37,6 +37,29 @@ tools:
         limit: {type: integer, default: 5, description: "Số lượng"}
       required: [query]
 
+  - name: social_analyze
+    description: "Analyze collected social posts for sentiment, themes, risk level, key posts, and a monitoring brief."
+    parameters:
+      type: object
+      properties:
+        items:
+          type: array
+          default: []
+          description: "Posts returned by social_search or timeline"
+          items:
+            type: object
+            properties:
+              title: {type: string}
+              summary: {type: string}
+              url: {type: string}
+              source: {type: string}
+              date: {type: string}
+              metrics: {type: object}
+        query: {type: string, default: "", description: "Keyword, brand, hashtag, or topic being monitored"}
+        focus: {type: string, default: "", description: "Analysis focus such as sentiment, complaints, hot topics, risk, or opportunities"}
+        max_examples: {type: integer, default: 3, description: "Number of key posts to include"}
+      required: [items]
+
   - name: lookup
     description: "Tra cứu thông tin trên internet."
     parameters:
