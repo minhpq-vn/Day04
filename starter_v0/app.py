@@ -207,6 +207,7 @@ with tab_chat:
                             provider=provider,
                             messages=messages,
                             tools=openai_tools,
+                            model=None,
                             max_tool_rounds=4
                         )
 
