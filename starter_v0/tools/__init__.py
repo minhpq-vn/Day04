@@ -16,6 +16,7 @@ from .social_search.tool import search_tweets
 from .send.tool import send_telegram
 from .lookup.tool import web_search
 from .sentiment_analyzer.tool import analyze_sentiment
+from .social_analyze.tool import analyze_social_items
 
 TOOL_FUNCTIONS = {
     "clarify": ask_user,
@@ -29,6 +30,7 @@ TOOL_FUNCTIONS = {
     "papers": arxiv_search,
     "paper_text": get_arxiv_paper_text,
     "sentiment_analyzer": analyze_sentiment,
+    "social_analyze": analyze_social_items,
 }
 
 

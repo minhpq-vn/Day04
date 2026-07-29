@@ -1,0 +1,423 @@
+{
+  "transcript_id": "app_v3_openrouter_2026-07-29T165926",
+  "version": "v3",
+  "artifact_version": "v3+p3b1b86e2b782+t60dac9db146e",
+  "prompt_hash": "3b1b86e2b782fe8267f8a3cd840365de968b09ba8a72cb38c348eec2adef5dda",
+  "tools_hash": "60dac9db146e16e8ab4e5518f3577753648af2266316700fadbfdf7b24fc4229",
+  "provider": "openrouter",
+  "created_at": "2026-07-29T16:59:26",
+  "updated_at": "2026-07-29T17:00:46",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T16:59:41",
+      "user": "Cho mình các bài đăng nổi bật nhất về iPhone 18 trên Twitter.",
+      "status": "answered",
+      "assistant_text": "**Top Tweets on iPhone 18**\n\n- **Will Apple release iPhone 18 Pro or Pro Max in 2026?** Standard model delayed to 2027. – [@polypredictionx](https://x.com/polypredictionx/status/2082334062572695563)  \n- **Search spikes in Nigeria, India, Southeast Asia indicate upcoming release.** – [@DKnowledgeVault](https://x.com/DKnowledgeVault/status/2082352936781230537)  \n- **Regular iPhone 18 or cheaper models will wait until next year.** – [@YOUNGPGTECH](https://x.com/YOUNGPGTECH/status/2079943200437928419)  \n- **New rumors suggest Apple will change charging ports, impacting accessories.** – [@WallStreetApes](https://x.com/WallStreetApes/status/2022672178932764849)  \n- **Concept video shows foldable design; limited supply expected.** – [@dom_lucre](https://x.com/dom_lucre/status/2041948348509241434)",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "social_search",
+              "args": {
+                "limit": 5,
+                "query": "iPhone 18",
+                "search_type": "Top"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "social_search",
+              "args": {
+                "limit": 5,
+                "query": "iPhone 18",
+                "search_type": "Top"
+              },
+              "result": {
+                "tool": "search_tweets",
+                "query": "iPhone 18",
+                "search_type": "Top",
+                "items": [
+                  {
+                    "title": "Will Apple release iPhone 18 in 2026?",
+                    "summary": "Will Apple release iPhone 18 in 2026?\nThe market hinges on whether Apple releases the iPhone 18 Pro or Pro Max in 2026, since the standard model is delayed to 2027.\n\nhttps://t.co/y8yfqXQYu6\n\n#KPIs #Apple #BigTech #Polymarket",
+                    "url": "https://x.com/polypredictionx/status/2082334062572695563",
+                    "source": "@polypredictionx",
+                    "date": "Wed Jul 29 05:15:03 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "121"
+                    }
+                  },
+                  {
+                    "title": "iPhone 18 release date searches just spiked across emerging markets—Nigeria, India, Southeast Asia leading the trend vol",
+                    "summary": "iPhone 18 release date searches just spiked across emerging markets—Nigeria, India, Southeast Asia leading the trend volume.\n\nPattern signal: regional search clustering maps upgrade cycles before official announcements drop. When emerging markets lead Apple trend velocity, it si…",
+                    "url": "https://x.com/DKnowledgeVault/status/2082352936781230537",
+                    "source": "@DKnowledgeVault",
+                    "date": "Wed Jul 29 06:30:03 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "51"
+                    }
+                  },
+                  {
+                    "title": "Normally, Apple releases all their new iPhones at once in September. But this time, it's different.",
+                    "summary": "Normally, Apple releases all their new iPhones at once in September. But this time, it's different.\n\nThis in few months time, they will only release the fancy ones which are the iPhone 18 Pro and 18 Pro Max.\n\nIf you want the regular iPhone 18 or the cheaper models, you'll have to wait until next year…",
+                    "url": "https://x.com/YOUNGPGTECH/status/2079943200437928419",
+                    "source": "@YOUNGPGTECH",
+                    "date": "Wed Jul 22 14:54:37 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "1066"
+                    }
+                  },
+                  {
+                    "title": "New rumors that Apple is moving away from the current industry standard USB-C ports with the iPhone 18",
+                    "summary": "New rumors that Apple is moving away from the current industry standard USB-C ports with the iPhone 18\n\nThis means you would need to purchase all the new charges for your home, vehicles and accessories\n\nJust by switching the charger, this would generate Apple $1.2–$5 billion in additional revenue from chargers/accessories sales alone in the first 1–2 years",
+                    "url": "https://x.com/WallStreetApes/status/2022672178932764849",
+                    "source": "@WallStreetApes",
+                    "date": "Sat Feb 14 14:00:01 +0000 2026",
+                    "metrics": {
+                      "favorites": 1324,
+                      "retweets": 295,
+                      "views": "444216"
+                    }
+                  },
+                  {
+                    "title": "🔥🚨DEVELOPING: Apple’s foldable iPhone is reportedly on track for a September release with the iPhone 18 Pro. While suppl",
+                    "summary": "🔥🚨DEVELOPING: Apple’s foldable iPhone is reportedly on track for a September release with the iPhone 18 Pro. While supply will most likely be limited initially. \n\nThis video shared a tech developer shows a concept of how the fold is expected to perform.  https://t.co/vltkjCzQxS",
+                    "url": "https://x.com/dom_lucre/status/2041948348509241434",
+                    "source": "@dom_lucre",
+                    "date": "Wed Apr 08 18:36:38 +0000 2026",
+                    "metrics": {
+                      "favorites": 2692,
+                      "retweets": 265,
+                      "views": "1150435"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "format",
+              "args": {
+                "headline": "Top Tweets on iPhone 18",
+                "items": [
+                  {
+                    "date": "Wed Jul 29 05:15:03 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "121"
+                    },
+                    "source": "@polypredictionx",
+                    "summary": "Will Apple release iPhone 18 Pro or Pro Max in 2026? Standard model delayed to 2027.",
+                    "title": "Will Apple release iPhone 18 in 2026?",
+                    "url": "https://x.com/polypredictionx/status/2082334062572695563"
+                  },
+                  {
+                    "date": "Wed Jul 29 06:30:03 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "51"
+                    },
+                    "source": "@DKnowledgeVault",
+                    "summary": "Search spikes in Nigeria, India, Southeast Asia indicate upcoming release.",
+                    "title": "iPhone 18 release date searches spiked across emerging markets",
+                    "url": "https://x.com/DKnowledgeVault/status/2082352936781230537"
+                  },
+                  {
+                    "date": "Wed Jul 22 14:54:37 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "1066"
+                    },
+                    "source": "@YOUNGPGTECH",
+                    "summary": "Regular iPhone 18 or cheaper models will wait until next year.",
+                    "title": "Apple releases only iPhone 18 Pro and Pro Max this time",
+                    "url": "https://x.com/YOUNGPGTECH/status/2079943200437928419"
+                  },
+                  {
+                    "date": "Sat Feb 14 14:00:01 +0000 2026",
+                    "metrics": {
+                      "favorites": 1324,
+                      "retweets": 295,
+                      "views": "444216"
+                    },
+                    "source": "@WallStreetApes",
+                    "summary": "New rumors suggest Apple will change charging ports, impacting accessories.",
+                    "title": "Apple moving away from USB-C ports with iPhone 18",
+                    "url": "https://x.com/WallStreetApes/status/2022672178932764849"
+                  },
+                  {
+                    "date": "Wed Apr 08 18:36:38 +0000 2026",
+                    "metrics": {
+                      "favorites": 2692,
+                      "retweets": 265,
+                      "views": "1150435"
+                    },
+                    "source": "@dom_lucre",
+                    "summary": "Concept video shows foldable design; limited supply expected.",
+                    "title": "Apple’s foldable iPhone on track for September release with iPhone 18 Pro",
+                    "url": "https://x.com/dom_lucre/status/2041948348509241434"
+                  }
+                ],
+                "template": "bullets"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "format",
+              "args": {
+                "headline": "Top Tweets on iPhone 18",
+                "items": [
+                  {
+                    "date": "Wed Jul 29 05:15:03 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "121"
+                    },
+                    "source": "@polypredictionx",
+                    "summary": "Will Apple release iPhone 18 Pro or Pro Max in 2026? Standard model delayed to 2027.",
+                    "title": "Will Apple release iPhone 18 in 2026?",
+                    "url": "https://x.com/polypredictionx/status/2082334062572695563"
+                  },
+                  {
+                    "date": "Wed Jul 29 06:30:03 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "51"
+                    },
+                    "source": "@DKnowledgeVault",
+                    "summary": "Search spikes in Nigeria, India, Southeast Asia indicate upcoming release.",
+                    "title": "iPhone 18 release date searches spiked across emerging markets",
+                    "url": "https://x.com/DKnowledgeVault/status/2082352936781230537"
+                  },
+                  {
+                    "date": "Wed Jul 22 14:54:37 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "1066"
+                    },
+                    "source": "@YOUNGPGTECH",
+                    "summary": "Regular iPhone 18 or cheaper models will wait until next year.",
+                    "title": "Apple releases only iPhone 18 Pro and Pro Max this time",
+                    "url": "https://x.com/YOUNGPGTECH/status/2079943200437928419"
+                  },
+                  {
+                    "date": "Sat Feb 14 14:00:01 +0000 2026",
+                    "metrics": {
+                      "favorites": 1324,
+                      "retweets": 295,
+                      "views": "444216"
+                    },
+                    "source": "@WallStreetApes",
+                    "summary": "New rumors suggest Apple will change charging ports, impacting accessories.",
+                    "title": "Apple moving away from USB-C ports with iPhone 18",
+                    "url": "https://x.com/WallStreetApes/status/2022672178932764849"
+                  },
+                  {
+                    "date": "Wed Apr 08 18:36:38 +0000 2026",
+                    "metrics": {
+                      "favorites": 2692,
+                      "retweets": 265,
+                      "views": "1150435"
+                    },
+                    "source": "@dom_lucre",
+                    "summary": "Concept video shows foldable design; limited supply expected.",
+                    "title": "Apple’s foldable iPhone on track for September release with iPhone 18 Pro",
+                    "url": "https://x.com/dom_lucre/status/2041948348509241434"
+                  }
+                ],
+                "template": "bullets"
+              },
+              "result": {
+                "tool": "render_digest",
+                "template": "bullets",
+                "markdown": "- Will Apple release iPhone 18 Pro or Pro Max in 2026? Standard model delayed to 2027. - [@polypredictionx](https://x.com/polypredictionx/status/2082334062572695563)\n- Search spikes in Nigeria, India, Southeast Asia indicate upcoming release. - [@DKnowledgeVault](https://x.com/DKnowledgeVault/status/2082352936781230537)\n- Regular iPhone 18 or cheaper models will wait until next year. - [@YOUNGPGTECH](https://x.com/YOUNGPGTECH/status/2079943200437928419)\n- New rumors suggest Apple will change charging ports, impacting accessories. - [@WallStreetApes](https://x.com/WallStreetApes/status/2022672178932764849)\n- Concept video shows foldable design; limited supply expected. - [@dom_lucre](https://x.com/dom_lucre/status/2041948348509241434)",
+                "item_count": 5
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "assistant_text": "**Top Tweets on iPhone 18**\n\n- **Will Apple release iPhone 18 Pro or Pro Max in 2026?** Standard model delayed to 2027. – [@polypredictionx](https://x.com/polypredictionx/status/2082334062572695563)  \n- **Search spikes in Nigeria, India, Southeast Asia indicate upcoming release.** – [@DKnowledgeVault](https://x.com/DKnowledgeVault/status/2082352936781230537)  \n- **Regular iPhone 18 or cheaper models will wait until next year.** – [@YOUNGPGTECH](https://x.com/YOUNGPGTECH/status/2079943200437928419)  \n- **New rumors suggest Apple will change charging ports, impacting accessories.** – [@WallStreetApes](https://x.com/WallStreetApes/status/2022672178932764849)  \n- **Concept video shows foldable design; limited supply expected.** – [@dom_lucre](https://x.com/dom_lucre/status/2041948348509241434)",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "social_search",
+          "args": {
+            "limit": 5,
+            "query": "iPhone 18",
+            "search_type": "Top"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "iPhone 18",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "Will Apple release iPhone 18 in 2026?",
+                "summary": "Will Apple release iPhone 18 in 2026?\nThe market hinges on whether Apple releases the iPhone 18 Pro or Pro Max in 2026, since the standard model is delayed to 2027.\n\nhttps://t.co/y8yfqXQYu6\n\n#KPIs #Apple #BigTech #Polymarket",
+                "url": "https://x.com/polypredictionx/status/2082334062572695563",
+                "source": "@polypredictionx",
+                "date": "Wed Jul 29 05:15:03 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "121"
+                }
+              },
+              {
+                "title": "iPhone 18 release date searches just spiked across emerging markets—Nigeria, India, Southeast Asia leading the trend vol",
+                "summary": "iPhone 18 release date searches just spiked across emerging markets—Nigeria, India, Southeast Asia leading the trend volume.\n\nPattern signal: regional search clustering maps upgrade cycles before official announcements drop. When emerging markets lead Apple trend velocity, it si…",
+                "url": "https://x.com/DKnowledgeVault/status/2082352936781230537",
+                "source": "@DKnowledgeVault",
+                "date": "Wed Jul 29 06:30:03 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "51"
+                }
+              },
+              {
+                "title": "Normally, Apple releases all their new iPhones at once in September. But this time, it's different.",
+                "summary": "Normally, Apple releases all their new iPhones at once in September. But this time, it's different.\n\nThis in few months time, they will only release the fancy ones which are the iPhone 18 Pro and 18 Pro Max.\n\nIf you want the regular iPhone 18 or the cheaper models, you'll have to wait until next year…",
+                "url": "https://x.com/YOUNGPGTECH/status/2079943200437928419",
+                "source": "@YOUNGPGTECH",
+                "date": "Wed Jul 22 14:54:37 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "1066"
+                }
+              },
+              {
+                "title": "New rumors that Apple is moving away from the current industry standard USB-C ports with the iPhone 18",
+                "summary": "New rumors that Apple is moving away from the current industry standard USB-C ports with the iPhone 18\n\nThis means you would need to purchase all the new charges for your home, vehicles and accessories\n\nJust by switching the charger, this would generate Apple $1.2–$5 billion in additional revenue from chargers/accessories sales alone in the first 1–2 years",
+                "url": "https://x.com/WallStreetApes/status/2022672178932764849",
+                "source": "@WallStreetApes",
+                "date": "Sat Feb 14 14:00:01 +0000 2026",
+                "metrics": {
+                  "favorites": 1324,
+                  "retweets": 295,
+                  "views": "444216"
+                }
+              },
+              {
+                "title": "🔥🚨DEVELOPING: Apple’s foldable iPhone is reportedly on track for a September release with the iPhone 18 Pro. While suppl",
+                "summary": "🔥🚨DEVELOPING: Apple’s foldable iPhone is reportedly on track for a September release with the iPhone 18 Pro. While supply will most likely be limited initially. \n\nThis video shared a tech developer shows a concept of how the fold is expected to perform.  https://t.co/vltkjCzQxS",
+                "url": "https://x.com/dom_lucre/status/2041948348509241434",
+                "source": "@dom_lucre",
+                "date": "Wed Apr 08 18:36:38 +0000 2026",
+                "metrics": {
+                  "favorites": 2692,
+                  "retweets": 265,
+                  "views": "1150435"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "tool": "format",
+          "args": {
+            "headline": "Top Tweets on iPhone 18",
+            "items": [
+              {
+                "date": "Wed Jul 29 05:15:03 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "121"
+                },
+                "source": "@polypredictionx",
+                "summary": "Will Apple release iPhone 18 Pro or Pro Max in 2026? Standard model delayed to 2027.",
+                "title": "Will Apple release iPhone 18 in 2026?",
+                "url": "https://x.com/polypredictionx/status/2082334062572695563"
+              },
+              {
+                "date": "Wed Jul 29 06:30:03 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "51"
+                },
+                "source": "@DKnowledgeVault",
+                "summary": "Search spikes in Nigeria, India, Southeast Asia indicate upcoming release.",
+                "title": "iPhone 18 release date searches spiked across emerging markets",
+                "url": "https://x.com/DKnowledgeVault/status/2082352936781230537"
+              },
+              {
+                "date": "Wed Jul 22 14:54:37 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "1066"
+                },
+                "source": "@YOUNGPGTECH",
+                "summary": "Regular iPhone 18 or cheaper models will wait until next year.",
+                "title": "Apple releases only iPhone 18 Pro and Pro Max this time",
+                "url": "https://x.com/YOUNGPGTECH/status/2079943200437928419"
+              },
+              {
+                "date": "Sat Feb 14 14:00:01 +0000 2026",
+                "metrics": {
+                  "favorites": 1324,
+                  "retweets": 295,
+                  "views": "444216"
+                },
+                "source": "@WallStreetApes",
+                "summary": "New rumors suggest Apple will change charging ports, impacting accessories.",
+                "title": "Apple moving away from USB-C ports with iPhone 18",
+                "url": "https://x.com/WallStreetApes/status/2022672178932764849"
+              },
+              {
+                "date": "Wed Apr 08 18:36:38 +0000 2026",
+                "metrics": {
+                  "favorites": 2692,
+                  "retweets": 265,
+                  "views": "1150435"
+                },
+                "source": "@dom_lucre",
+                "summary": "Concept video shows foldable design; limited supply expected.",
+                "title": "Apple’s foldable iPhone on track for September release with iPhone 18 Pro",
+                "url": "https://x.com/dom_lucre/status/2041948348509241434"
+              }
+            ],
+            "template": "bullets"
+          },
+          "result": {
+            "tool": "render_digest",
+            "template": "bullets",
+            "markdown": "- Will Apple release iPhone 18 Pro or Pro Max in 2026? Standard model delayed to 2027. - [@polypredictionx](https://x.com/polypredictionx/status/2082334062572695563)\n- Search spikes in Nigeria, India, Southeast Asia indicate upcoming release. - [@DKnowledgeVault](https://x.com/DKnowledgeVault/status/2082352936781230537)\n- Regular iPhone 18 or cheaper models will wait until next year. - [@YOUNGPGTECH](https://x.com/YOUNGPGTECH/status/2079943200437928419)\n- New rumors suggest Apple will change charging ports, impacting accessories. - [@WallStreetApes](https://x.com/WallStreetApes/status/2022672178932764849)\n- Concept video shows foldable design; limited supply expected. - [@dom_lucre](https://x.com/dom_lucre/status/2041948348509241434)",
+            "item_count": 5
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:00:46"
+    }
+  ]
+}
