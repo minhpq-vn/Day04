@@ -1,7 +1,238 @@
-{
+﻿{
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
   "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
-  "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "allowed_failure_types": [
+    "wrong_tool",
+    "wrong_arg_value",
+    "wrong_boundary",
+    "unnecessary_tool",
+    "out_of_scope",
+    "missing_info"
+  ],
+  "cases": [
+    {
+      "id": "TWG01_account_timeline",
+      "phase": "B",
+      "suite": "group",
+      "query": "Get 7 recent tweets posted by @karpathy.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": { "screenname": "karpathy", "limit": 7 }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Account posts require timeline, no @, and limit=7."
+      }
+    },
+    {
+      "id": "TWG02_topic_latest",
+      "phase": "B",
+      "suite": "group",
+      "query": "Find the 8 latest Twitter posts about AI coding agents.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI coding agents",
+              "search_type": "Latest",
+              "limit": 8
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Posts about a topic require social_search with Latest."
+      }
+    },
+    {
+      "id": "TWG03_topic_top",
+      "phase": "B",
+      "suite": "group",
+      "query": "Show me the 6 most popular tweets about Claude Code.",
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": { "query": "Claude Code", "search_type": "Top", "limit": 6 }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Most popular must map to search_type=Top."
+      }
+    },
+    {
+      "id": "TWG04_missing_topic",
+      "phase": "B",
+      "suite": "group",
+      "query": "Find 10 of the most discussed tweets for me.",
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          { "name": "clarify", "args": { "response_type": "text" } }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "A missing topic requires clarification instead of guessing."
+      }
+    },
+    {
+      "id": "TWG05_twitter_and_web",
+      "phase": "B",
+      "suite": "group",
+      "query": "Find the latest Twitter reactions about humanoid robots and compare them with web news from this month.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": { "query": "humanoid robots", "search_type": "Latest" }
+          },
+          {
+            "name": "lookup",
+            "args": {
+              "query": "humanoid robots",
+              "topic": "news",
+              "timeframe": "month"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "A social and web comparison requires both tools."
+      }
+    },
+    {
+      "id": "TWG06_fill_account",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        { "role": "user", "content": "Get 4 recent tweets from an account." },
+        { "role": "user", "content": "The account is @ylecun." },
+        { "role": "user", "content": "Keep the original count." }
+      ],
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          { "name": "timeline", "args": { "screenname": "ylecun", "limit": 4 } }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Fill the account later and retain limit=4."
+      }
+    },
+    {
+      "id": "TWG07_by_to_about",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Get the latest tweet posted by Sam Altman."
+        },
+        {
+          "role": "user",
+          "content": "No, show what the community says about Sam Altman."
+        },
+        { "role": "user", "content": "Get the 9 latest posts." }
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "Sam Altman",
+              "search_type": "Latest",
+              "limit": 9
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Switch from posts by a person to posts about them."
+      }
+    },
+    {
+      "id": "TWG08_latest_to_top",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Find 12 latest tweets about OpenAI Codex."
+        },
+        { "role": "user", "content": "Change that to the most popular posts." },
+        { "role": "user", "content": "Keep 12 posts and the same topic." }
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "OpenAI Codex",
+              "search_type": "Top",
+              "limit": 12
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Change Latest to Top while retaining query and limit."
+      }
+    },
+    {
+      "id": "TWG09_topic_correction",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        { "role": "user", "content": "Find tweets about electric vehicles." },
+        { "role": "user", "content": "Narrow it down to VinFast VF3 only." },
+        { "role": "user", "content": "Give me the 5 latest posts." }
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "VinFast VF3",
+              "search_type": "Latest",
+              "limit": 5
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "A later specific topic replaces the earlier broad topic."
+      }
+    },
+    {
+      "id": "TWG10_cancel_search",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        { "role": "user", "content": "Find the latest tweets about GPT-5." },
+        { "role": "user", "content": "Cancel that search." },
+        {
+          "role": "user",
+          "content": "Briefly tell me what Twitter tasks you support."
+        }
+      ],
+      "failure_type": "unnecessary_tool",
+      "expect": { "no_tool": true },
+      "metadata": {
+        "what_it_tests": "The cancelled search and final capability question require no tool."
+      }
+    }
+  ]
 }
